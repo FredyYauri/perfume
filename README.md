@@ -16,9 +16,26 @@ npm run build        # build de producción en dist/perfume/browser
 npm test             # pruebas unitarias (Vitest)
 ```
 
-### Publicar en Vercel
+### Publicar en Vercel con GitHub Actions
 
-El repo ya trae `vercel.json` (build, carpeta de salida y reescritura de rutas a `index.html`). En [vercel.com/new](https://vercel.com/new) importa el repositorio de GitHub y pulsa **Deploy**; no hace falta cambiar ninguna opción. Cada push a `main` publica una nueva versión y cada PR genera una vista previa.
+El despliegue lo hace el workflow `.github/workflows/deploy.yml`:
+
+- **Pull request a `main`:** corre las pruebas y el build, sin publicar.
+- **Push a `main`:** prueba, compila y publica en producción.
+- **Manual:** en la pestaña **Actions** → *Desplegar en Vercel* → **Run workflow**, eliges `production` o `preview`.
+
+`vercel.json` desactiva los despliegues automáticos propios de Vercel (`git.deploymentEnabled: false`) para que solo publique GitHub Actions y no haya despliegues duplicados.
+
+Configuración inicial (una sola vez):
+
+1. Crea el proyecto en Vercel: en [vercel.com/new](https://vercel.com/new) importa el repo, o en tu PC ejecuta `npx vercel link`.
+2. Crea un token en [vercel.com/account/tokens](https://vercel.com/account/tokens).
+3. Copia el **Team ID** (Vercel → Settings del equipo o cuenta) y el **Project ID** (proyecto → Settings → General). Con `vercel link` también aparecen en `.vercel/project.json` como `orgId` y `projectId`.
+4. En GitHub: **Settings → Secrets and variables → Actions → New repository secret**, crea:
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+5. Ve a **Actions → Desplegar en Vercel → Run workflow**. Al terminar, el resumen del job muestra la URL publicada.
 
 Para otro hosting estático, sube `dist/perfume/browser` y redirige las rutas desconocidas a `index.html` para que funcionen enlaces como `/perfume/dior-sauvage-edp`.
 
