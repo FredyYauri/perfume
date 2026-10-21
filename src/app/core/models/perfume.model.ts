@@ -3,7 +3,6 @@ export type Gender = 'male' | 'female' | 'unisex';
 /** Id de colección/categoría (ver `assets/data/categories.json`). */
 export type PerfumeCategoryId = string;
 
-export type CardLayout = 'regular' | 'tall' | 'wide';
 
 export interface PerfumeSize {
   /** Volumen del decant en mililitros. */
@@ -47,7 +46,6 @@ export interface Perfume {
   readonly releaseRank: number;
   /** Orden editorial ("Curaduría"). */
   readonly curationOrder: number;
-  readonly cardLayout: CardLayout;
   readonly palette: PerfumePalette;
   readonly active: boolean;
 }
