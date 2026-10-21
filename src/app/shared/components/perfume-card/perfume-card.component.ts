@@ -17,16 +17,12 @@ import { FavoriteButtonComponent } from '../favorite-button/favorite-button.comp
   styleUrl: './perfume-card.component.scss',
   host: {
     class: 'pcard-host',
-    '[class.tall]': "perfume().cardLayout === 'tall'",
-    '[class.wide]': "perfume().cardLayout === 'wide' && allowWide()",
   },
 })
 export class PerfumeCardComponent {
   readonly perfume = input.required<Perfume>();
   /** Formato activo del estudio: define precio, nivel del frasco y lo que agrega el botón. */
   readonly ml = input.required<number>();
-  /** Permite la tarjeta horizontal "wide" (solo en la galería del estudio). */
-  readonly allowWide = input(true);
   readonly eager = input(false);
 
   private readonly selection = inject(SelectionService);

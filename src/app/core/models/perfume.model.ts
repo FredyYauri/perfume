@@ -3,7 +3,6 @@ export type Gender = 'male' | 'female' | 'unisex';
 /** Id de colección/categoría (ver `assets/data/categories.json`). */
 export type PerfumeCategoryId = string;
 
-export type CardLayout = 'regular' | 'tall' | 'wide';
 
 export interface PerfumeSize {
   /** Volumen del decant en mililitros. */
@@ -37,8 +36,8 @@ export interface Perfume {
   readonly occasions: readonly string[];
   readonly intensity: string;
   readonly sizes: readonly PerfumeSize[];
-  /** Foto del producto (WebP/AVIF en `assets/images/perfumes`). */
-  readonly image: string;
+  /** Foto del producto (WebP en `assets/images/perfumes`). Sin foto se dibuja el frasco ilustrado. */
+  readonly image?: string;
   readonly tags: readonly string[];
   readonly rating: number;
   readonly reviewsCount: number;
@@ -47,7 +46,6 @@ export interface Perfume {
   readonly releaseRank: number;
   /** Orden editorial ("Curaduría"). */
   readonly curationOrder: number;
-  readonly cardLayout: CardLayout;
   readonly palette: PerfumePalette;
   readonly active: boolean;
 }

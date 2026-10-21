@@ -38,7 +38,6 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/dior-sauvage-edp.webp",
     "tags": [
       "Más elegido"
     ],
@@ -47,7 +46,6 @@
     "popularity": 14,
     "releaseRank": 10,
     "curationOrder": 1,
-    "cardLayout": "tall",
     "palette": {
       "background": "#DCE6E4",
       "primary": "#9FC3C3",
@@ -95,7 +93,6 @@
         "stock": 0
       }
     ],
-    "image": "assets/images/perfumes/pdm-layton.webp",
     "tags": [
       "Nuevo"
     ],
@@ -104,7 +101,6 @@
     "popularity": 13,
     "releaseRank": 1,
     "curationOrder": 2,
-    "cardLayout": "wide",
     "palette": {
       "background": "#E9E4EC",
       "primary": "#B9AACB",
@@ -152,7 +148,6 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/lattafa-khamrah-qahwa.webp",
     "tags": [
       "Unisex"
     ],
@@ -161,7 +156,6 @@
     "popularity": 12,
     "releaseRank": 16,
     "curationOrder": 3,
-    "cardLayout": "regular",
     "palette": {
       "background": "#EFE2CF",
       "primary": "#C79A6B",
@@ -216,7 +210,6 @@
     "popularity": 11,
     "releaseRank": 2,
     "curationOrder": 4,
-    "cardLayout": "regular",
     "palette": {
       "background": "#DDE7EE",
       "primary": "#A6C4D8",
@@ -264,7 +257,6 @@
         "stock": 4
       }
     ],
-    "image": "assets/images/perfumes/valentino-born-in-roma-intense.webp",
     "tags": [
       "Nuevo"
     ],
@@ -273,7 +265,6 @@
     "popularity": 10,
     "releaseRank": 3,
     "curationOrder": 5,
-    "cardLayout": "tall",
     "palette": {
       "background": "#F2E4E6",
       "primary": "#E3AFB8",
@@ -321,7 +312,6 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/afnan-9pm.webp",
     "tags": [
       "Para la noche"
     ],
@@ -330,7 +320,6 @@
     "popularity": 9,
     "releaseRank": 15,
     "curationOrder": 6,
-    "cardLayout": "regular",
     "palette": {
       "background": "#E1E3EC",
       "primary": "#9AA4C8",
@@ -378,14 +367,12 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/armaf-club-de-nuit-intense-man.webp",
     "tags": [],
     "rating": 4.8,
     "reviewsCount": 76,
     "popularity": 8,
     "releaseRank": 20,
     "curationOrder": 7,
-    "cardLayout": "regular",
     "palette": {
       "background": "#E2E4E6",
       "primary": "#9AA3AD",
@@ -442,7 +429,6 @@
     "popularity": 7,
     "releaseRank": 5,
     "curationOrder": 8,
-    "cardLayout": "regular",
     "palette": {
       "background": "#EDE3D2",
       "primary": "#D3B07A",
@@ -490,14 +476,12 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/armaf-mandarin-sky.webp",
     "tags": [],
     "rating": 4.6,
     "reviewsCount": 62,
     "popularity": 6,
     "releaseRank": 19,
     "curationOrder": 9,
-    "cardLayout": "wide",
     "palette": {
       "background": "#F3E3D3",
       "primary": "#E9B07A",
@@ -552,7 +536,6 @@
     "popularity": 5,
     "releaseRank": 11,
     "curationOrder": 10,
-    "cardLayout": "regular",
     "palette": {
       "background": "#E4E1EA",
       "primary": "#B7ACCB",
@@ -607,7 +590,6 @@
     "popularity": 4,
     "releaseRank": 7,
     "curationOrder": 11,
-    "cardLayout": "regular",
     "palette": {
       "background": "#DFE2E8",
       "primary": "#A9B3C6",
@@ -655,14 +637,12 @@
         "stock": 10
       }
     ],
-    "image": "assets/images/perfumes/armani-stronger-with-you-intensely.webp",
     "tags": [],
     "rating": 4.8,
     "reviewsCount": 41,
     "popularity": 3,
     "releaseRank": 13,
     "curationOrder": 12,
-    "cardLayout": "tall",
     "palette": {
       "background": "#EEE0D2",
       "primary": "#D6A47A",
@@ -710,14 +690,12 @@
         "stock": 0
       }
     ],
-    "image": "assets/images/perfumes/azzaro-the-most-wanted-parfum.webp",
     "tags": [],
     "rating": 4.7,
     "reviewsCount": 34,
     "popularity": 2,
     "releaseRank": 12,
     "curationOrder": 13,
-    "cardLayout": "regular",
     "palette": {
       "background": "#EFDCD8",
       "primary": "#D99A8F",
@@ -772,7 +750,6 @@
     "popularity": 1,
     "releaseRank": 4,
     "curationOrder": 14,
-    "cardLayout": "regular",
     "palette": {
       "background": "#E3E6DD",
       "primary": "#C9C08A",

@@ -33,7 +33,7 @@ import { PerfumeCardComponent } from '../../shared/components/perfume-card/perfu
       } @else {
         <div class="gallery">
           @for (perfume of favorites(); track perfume.id) {
-            <app-perfume-card [perfume]="perfume" [ml]="selection.format()" [allowWide]="false" />
+            <app-perfume-card [perfume]="perfume" [ml]="selection.format()" />
           }
         </div>
       }
@@ -46,15 +46,8 @@ import { PerfumeCardComponent } from '../../shared/components/perfume-card/perfu
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      grid-auto-rows: 176px;
-      grid-auto-flow: dense;
+      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
       gap: 16px;
-    }
-    @media (max-width: 520px) {
-      .gallery {
-        grid-auto-rows: auto;
-      }
     }
   `,
 })

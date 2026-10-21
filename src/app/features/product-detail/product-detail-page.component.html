@@ -101,7 +101,7 @@
         <h2 id="related-title" class="section-title related__title">También podría gustarte</h2>
         <div class="related__grid">
           @for (item of related(); track item.id) {
-            <app-perfume-card [perfume]="item" [ml]="selectedMl() ?? 5" [allowWide]="false" />
+            <app-perfume-card [perfume]="item" [ml]="selectedMl() ?? 5" />
           }
         </div>
       </section>

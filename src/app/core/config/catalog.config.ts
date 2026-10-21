@@ -43,8 +43,6 @@ export const CATALOG_CONFIG = {
   defaultFormatMl: 5,
   /** Casillas que muestra el visor del set en "Tu selección". */
   selectionSlots: 5,
-  /** `true` para mostrar las fotos (`image` del JSON) en lugar de la ilustración del frasco. */
-  useProductPhotos: false,
   relatedLimit: 4,
   skeletonCount: 6,
   searchDebounceMs: 200,

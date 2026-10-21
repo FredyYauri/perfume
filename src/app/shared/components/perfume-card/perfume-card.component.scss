@@ -2,30 +2,7 @@
 
 :host {
   display: block;
-  grid-row: span 2;
   min-width: 0;
-}
-
-:host(.tall) {
-  grid-row: span 3;
-}
-
-:host(.wide) {
-  grid-column: span 2;
-
-  .pcard {
-    flex-direction: row;
-  }
-
-  .art {
-    flex: 0 0 52%;
-  }
-
-  .info {
-    flex: 1 1 auto;
-    justify-content: flex-end;
-    padding: 22px;
-  }
 }
 
 .pcard {
@@ -61,8 +38,8 @@
 
 .art {
   position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: none;
+  aspect-ratio: 1;
   overflow: hidden;
 
   app-perfume-art {
@@ -195,7 +172,7 @@
 }
 
 .info {
-  flex: none;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -212,6 +189,7 @@
 .info__name {
   font-size: 25px;
   line-height: 1.05;
+  @include clamp-lines(2);
 
   a {
     text-decoration: none;
@@ -221,6 +199,7 @@
 .info__family {
   font-size: 13px;
   color: var(--ink-2);
+  @include clamp-lines(2);
 }
 
 .info__foot {
@@ -228,7 +207,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 6px;
+  margin-top: auto;
+  padding-top: 6px;
 }
 
 .info__price {
@@ -254,29 +234,5 @@
   &.in {
     background: var(--acc);
     border-color: var(--acc);
-  }
-}
-
-@include down(xs) {
-  :host,
-  :host(.tall) {
-    grid-row: auto;
-  }
-
-  :host(.wide) {
-    grid-column: auto;
-
-    .pcard {
-      flex-direction: column;
-    }
-
-    .art {
-      flex: none;
-    }
-  }
-
-  .art {
-    flex: none;
-    height: 220px;
   }
 }

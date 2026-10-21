@@ -58,9 +58,9 @@ Para otro hosting estático, sube `dist/perfume/browser` y redirige las rutas de
 
 ### Imágenes
 
-Las imágenes viven en `src/assets/images/` (`perfumes`, `categories`, `banners`, `icons`, `placeholders`), en formato WebP. Cada perfume indica su foto en el campo `image` del JSON; ningún componente tiene rutas de imagen escritas a mano.
+Las imágenes viven en `src/assets/images/` (`perfumes`, `categories`, `banners`, `icons`, `placeholders`), en formato WebP. Cada perfume indica su foto en el campo opcional `image` del JSON; ningún componente tiene rutas de imagen escritas a mano.
 
-Por defecto las tarjetas muestran un frasco ilustrado en SVG con la paleta del perfume (campo `palette`). Cuando tengas fotos reales, colócalas en `src/assets/images/perfumes/` y activa `useProductPhotos: true` en `catalog.config.ts`. Si una foto falla, se muestra `placeholders/perfume-placeholder.webp`.
+Los perfumes con `image` muestran su foto; los que no la tienen muestran un frasco ilustrado en SVG con su paleta (campo `palette`). Para agregar una foto: guárdala como `src/assets/images/perfumes/<id>.webp` (idealmente 600×660, producto centrado sobre fondo blanco) y añade `"image": "assets/images/perfumes/<id>.webp"` a ese perfume. Si una foto falla, se muestra `placeholders/perfume-placeholder.webp`.
 
 ### Stock
 

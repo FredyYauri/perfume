@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { CATALOG_CONFIG } from '../../../core/config';
 import { Perfume } from '../../../core/models';
 import { ImgFallbackDirective } from '../../directives/img-fallback.directive';
 
@@ -8,7 +7,7 @@ const LIQUID_HEIGHT: Readonly<Record<number, number>> = { 3: 48, 5: 76, 10: 104 
 
 /**
  * Ilustración del atomizador con la paleta del perfume (estilo del diseño).
- * Si `CATALOG_CONFIG.useProductPhotos` está activo, muestra la foto del JSON.
+ * Si el perfume tiene foto (`image` en el JSON), muestra la foto en su lugar.
  */
 @Component({
   selector: 'app-perfume-art',
@@ -16,10 +15,10 @@ const LIQUID_HEIGHT: Readonly<Record<number, number>> = { 3: 48, 5: 76, 10: 104 
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[style.background]': 'perfume().palette.background' },
   template: `
-    @if (usePhoto) {
+    @if (perfume().image; as image) {
       <img
         class="photo"
-        [src]="perfume().image"
+        [src]="image"
         [alt]="perfume().brand + ' ' + perfume().name"
         width="600"
         height="660"
@@ -65,6 +64,12 @@ const LIQUID_HEIGHT: Readonly<Record<number, number>> = { 3: 48, 5: 76, 10: 104 
       object-fit: cover;
       transition: transform 0.6s var(--ease);
     }
+    /* Las fotos vienen sobre fondo blanco: el blend lo funde con el color de la tarjeta. */
+    .photo {
+      object-fit: contain;
+      padding: 8% 10%;
+      mix-blend-mode: multiply;
+    }
     .liquid {
       transition:
         y 0.5s var(--ease),
@@ -78,6 +83,5 @@ export class PerfumeArtComponent {
   readonly ml = input(5);
   readonly eager = input(false);
 
-  protected readonly usePhoto = CATALOG_CONFIG.useProductPhotos;
   protected readonly liquidHeight = computed(() => LIQUID_HEIGHT[this.ml()] ?? 76);
 }

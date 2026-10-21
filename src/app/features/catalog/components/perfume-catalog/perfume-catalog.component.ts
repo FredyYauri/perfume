@@ -32,15 +32,8 @@ import { PerfumeCardComponent } from '../../../../shared/components/perfume-card
   styles: `
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      grid-auto-rows: 176px;
-      grid-auto-flow: dense;
+      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
       gap: 16px;
-    }
-    @media (max-width: 520px) {
-      .gallery {
-        grid-auto-rows: auto;
-      }
     }
   `,
 })
