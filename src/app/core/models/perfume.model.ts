@@ -37,8 +37,8 @@ export interface Perfume {
   readonly occasions: readonly string[];
   readonly intensity: string;
   readonly sizes: readonly PerfumeSize[];
-  /** Foto del producto (WebP/AVIF en `assets/images/perfumes`). */
-  readonly image: string;
+  /** Foto del producto (WebP en `assets/images/perfumes`). Sin foto se dibuja el frasco ilustrado. */
+  readonly image?: string;
   readonly tags: readonly string[];
   readonly rating: number;
   readonly reviewsCount: number;
