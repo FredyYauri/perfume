@@ -1,0 +1,30 @@
+<section class="panel" [class.panel--tray]="mode() === 'tray'" aria-label="Tu selección">
+  <header class="phead">
+    <svg class="phead__deco" aria-hidden="true" width="140" height="140" viewBox="0 0 140 140">
+      <circle cx="70" cy="70" r="60" fill="none" stroke="#F4F2ED" stroke-width="0.6" />
+      <circle cx="70" cy="70" r="40" fill="none" stroke="#F4F2ED" stroke-width="0.6" />
+      <circle cx="70" cy="70" r="12" style="fill: var(--acc2)" />
+    </svg>
+    <div class="phead__text">
+      <span class="phead__sheet" [appReplayAnimation]="selection.lastChange()">{{ sheetLabel() }}</span>
+      <h2 class="phead__title serif">Tu selección</h2>
+      @if (mode() === 'tray') {
+        <span class="phead__total">Total {{ selection.summary().total | price }}</span>
+      }
+    </div>
+    <button
+      type="button"
+      class="icb icb--dark"
+      [attr.aria-expanded]="expanded()"
+      [attr.aria-controls]="bodyId"
+      [attr.aria-label]="expanded() ? 'Contraer tu selección' : 'Expandir tu selección'"
+      (click)="expanded.set(!expanded())"
+    >
+      <app-icon [name]="mode() === 'tray' ? (expanded() ? 'chevronDown' : 'chevronUp') : expanded() ? 'chevronUp' : 'chevronDown'" [size]="16" />
+    </button>
+  </header>
+
+  <div class="pbody-wrap" [id]="bodyId" [hidden]="!expanded()">
+    <app-selection-summary />
+  </div>
+</section>

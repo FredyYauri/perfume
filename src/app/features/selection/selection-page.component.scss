@@ -1,0 +1,99 @@
+@use 'mixins' as *;
+
+.page {
+  padding-top: 48px;
+  padding-bottom: 104px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  gap: 56px;
+  align-items: start;
+
+  @include down(lg) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  .flabel {
+    margin: 0;
+  }
+}
+
+.lead {
+  max-width: 520px;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.how {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 22px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+
+  li {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    color: var(--ink-2);
+  }
+
+  .serif {
+    min-width: 28px;
+    font-size: 26px;
+    color: var(--acc2);
+  }
+}
+
+.rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    background: var(--sand-2);
+    font-size: 14px;
+  }
+}
+
+.rules__pct {
+  font-size: 30px;
+  line-height: 1;
+  color: var(--acc2);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.panel {
+  position: sticky;
+  top: var(--header-offset);
+
+  @include down(lg) {
+    position: static;
+  }
+}

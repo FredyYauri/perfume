@@ -1,0 +1,51 @@
+// Breakpoints del diseño. Uso: @use 'mixins' as *;
+$breakpoints: (
+  xs: 520px,
+  sm: 640px,
+  md: 860px,
+  nav: 900px,
+  lg: 980px,
+  xl: 1100px,
+);
+
+@mixin up($bp) {
+  @media (min-width: map-get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin down($bp) {
+  @media (max-width: map-get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--acc2);
+  outline-offset: 3px;
+}
+
+@mixin reset-button {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@mixin label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

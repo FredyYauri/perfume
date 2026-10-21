@@ -1,0 +1,10 @@
+[
+  {
+    "id": "set-descubrimiento",
+    "label": "Set de descubrimiento",
+    "description": "Arma un set de 3 decants o más y obtén 10% de descuento.",
+    "minItems": 3,
+    "percentage": 10,
+    "active": true
+  }
+]

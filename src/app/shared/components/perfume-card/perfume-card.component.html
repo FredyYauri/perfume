@@ -1,0 +1,49 @@
+<article class="pcard" [attr.aria-label]="displayName()">
+  <div class="art">
+    @if (tag(); as t) {
+      <span class="tag tag--{{ t.style }}">{{ t.text }}</span>
+    }
+    <app-favorite-button class="fav" [perfumeId]="perfume().id" [perfumeName]="displayName()" />
+    <app-perfume-art [perfume]="perfume()" [ml]="ml()" [eager]="eager()" />
+
+    <div class="reveal">
+      <span class="reveal__label">Pirámide · {{ perfume().intensity }}</span>
+      <ul class="reveal__notes" role="list">
+        @for (note of perfume().notes; track note) {
+          <li>{{ note }}</li>
+        }
+      </ul>
+      <span class="reveal__ideal">Ideal: {{ perfume().occasions.join(', ') }}</span>
+      <a class="reveal__btn" [routerLink]="['/perfume', perfume().id]">
+        Ver perfil olfativo <app-icon name="arrowRight" [size]="14" />
+      </a>
+    </div>
+  </div>
+
+  <div class="info">
+    <span class="info__brand">{{ perfume().brand }}</span>
+    <h3 class="info__name serif">
+      <a [routerLink]="['/perfume', perfume().id]">{{ perfume().name }}</a>
+    </h3>
+    <span class="info__family">{{ perfume().olfactoryFamily }} · {{ perfume().notes.join(', ') }}</span>
+    <div class="info__foot">
+      <span class="info__price">
+        @if (size(); as s) {
+          <strong>{{ s.price | price }}</strong>
+        }
+        <span>{{ ml() }} ml</span>
+      </span>
+      <button
+        type="button"
+        class="icb add"
+        [class.in]="inSelection()"
+        [attr.aria-pressed]="inSelection()"
+        [attr.aria-label]="addLabel()"
+        [disabled]="!isAvailable() && !inSelection()"
+        (click)="toggle()"
+      >
+        <app-icon [name]="inSelection() ? 'check' : 'plus'" [strokeWidth]="1.8" />
+      </button>
+    </div>
+  </div>
+</article>

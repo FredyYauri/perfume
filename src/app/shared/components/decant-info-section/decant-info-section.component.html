@@ -1,0 +1,48 @@
+<section class="mani-section" [id]="anchor()" aria-labelledby="mani-title">
+  <svg class="mani-deco" aria-hidden="true" viewBox="0 0 600 600">
+    <circle cx="300" cy="300" r="290" fill="none" stroke="#18202C" stroke-opacity="0.1" />
+    <circle cx="300" cy="300" r="220" style="fill: var(--acc)" opacity="0.06" />
+    <circle cx="300" cy="300" r="150" fill="none" stroke="#18202C" stroke-opacity="0.1" stroke-dasharray="3 7" />
+  </svg>
+  <div class="wrap">
+    <div class="mani">
+      <div class="mani__text">
+        <p class="flabel flabel--accent">¿Por qué formatos pequeños?</p>
+        <h2 id="mani-title" class="mani__title serif">Más aromas. <em>Menos</em> decisiones apresuradas.</h2>
+      </div>
+      <div class="mani__art" aria-hidden="true">
+        <div class="arch">
+          <svg viewBox="0 0 160 300" preserveAspectRatio="xMidYMid slice">
+            <circle cx="80" cy="90" r="60" style="fill: var(--acc)" opacity="0.55" />
+            <rect x="66" y="120" width="28" height="140" rx="10" fill="#ffffff" fill-opacity="0.25" stroke="#F4F2ED" stroke-opacity="0.4" />
+            <rect x="69" y="160" width="22" height="96" rx="8" fill="#C98A4B" />
+            <rect x="70" y="100" width="20" height="22" rx="3" fill="#F4F2ED" opacity="0.8" />
+            <rect x="72" y="190" width="16" height="22" fill="#FBFAF7" />
+          </svg>
+        </div>
+        <div class="label-card">
+          <svg viewBox="0 0 160 220" preserveAspectRatio="xMidYMid slice">
+            <g fill="none" stroke="#18202C" stroke-opacity="0.2">
+              <path d="M0 40Q40 20 80 40T160 40" />
+              <path d="M0 60Q40 40 80 60T160 60" />
+              <path d="M0 80Q40 60 80 80T160 80" />
+            </g>
+            <rect x="40" y="110" width="80" height="54" rx="4" fill="#FBFAF7" stroke="#18202C" stroke-opacity="0.2" />
+            <text x="80" y="134" font-family="Outfit, sans-serif" font-size="8" letter-spacing="1.6" text-anchor="middle" fill="#18202C">{{ brandName }}</text>
+            <text x="80" y="152" font-family="Instrument Serif, serif" font-size="13" text-anchor="middle" fill="#18202C">Nº 05 · 5 ml</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <ol class="ideas" role="list">
+      @for (idea of ideas; track idea.title) {
+        <li class="idea">
+          <span class="idea__n serif" aria-hidden="true">{{ idea.numeral }}</span>
+          <h3>{{ idea.title }}</h3>
+          <p>{{ idea.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

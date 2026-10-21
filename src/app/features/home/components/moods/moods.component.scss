@@ -1,0 +1,131 @@
+@use 'mixins' as *;
+
+.moods-section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.moods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mood-item.lift {
+  @include up(xl) {
+    margin-top: 56px;
+  }
+}
+
+.mood {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 400px;
+  height: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s;
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 50px -30px rgb(15 27 43 / 55%);
+    color: var(--ink);
+
+    .go {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &--fresh {
+    background: #dce7e6;
+    --mood-n: #2f5f63;
+    --mood-notes: #2a3a40;
+  }
+
+  &--sweet {
+    background: #f0e1cc;
+    --mood-n: #7a4a20;
+    --mood-notes: #4a3420;
+  }
+
+  &--night {
+    background: #121c2b;
+    color: var(--mist);
+    --mood-n: var(--peach);
+    --mood-notes: #d3d8df;
+    --go-bg: var(--mist);
+    --go-fg: var(--navy);
+
+    &:hover {
+      color: var(--mist);
+    }
+  }
+
+  &--chic {
+    background: #e4e1ea;
+    --mood-n: #4b3f66;
+    --mood-notes: #3a3450;
+  }
+}
+
+.mood__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
+}
+
+.mood__n {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--mood-n);
+}
+
+.mood__title {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.mood__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mood__notes {
+  font-size: 14px;
+  color: var(--mood-notes);
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--go-bg, var(--ink));
+  color: var(--go-fg, var(--white));
+  transition:
+    transform 0.3s ease,
+    background 0.3s;
+}

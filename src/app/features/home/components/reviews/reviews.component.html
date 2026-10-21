@@ -1,0 +1,61 @@
+<section id="comunidad" class="community" aria-labelledby="community-title">
+  <svg class="dots" aria-hidden="true" width="100%" height="100%">
+    <defs>
+      <pattern id="community-dots" width="28" height="28" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="#F4F2ED" fill-opacity="0.08" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#community-dots)" />
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="community-title" class="community__title serif">Descubrir también es parte del <em>lujo.</em></h2>
+      <p>Lo que cuenta nuestra comunidad después de probar.</p>
+    </div>
+    <ul class="reviews" role="list">
+      @for (review of reviews; track review.quote) {
+        <li class="rcard rcard--{{ review.theme }}">
+          @switch (review.theme) {
+            @case ('navy') {
+              <svg aria-hidden="true" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+                <circle cx="330" cy="70" r="120" style="fill: var(--acc)" opacity="0.45" />
+                <circle cx="330" cy="70" r="170" fill="none" stroke="#F4F2ED" stroke-opacity="0.12" />
+              </svg>
+            }
+            @case ('ember') {
+              <svg aria-hidden="true" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+                <path d="M40 400C60 300 160 280 140 180S220 60 200 0" fill="none" stroke="#E3A587" stroke-opacity="0.3" />
+                <path d="M100 400C120 310 220 290 200 190S280 70 260 0" fill="none" stroke="#E3A587" stroke-opacity="0.18" />
+                <circle cx="300" cy="90" r="70" fill="#B5532A" opacity="0.45" />
+              </svg>
+            }
+            @default {
+              <svg aria-hidden="true" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+                <g stroke="#A9CBC6" stroke-opacity="0.2"><path d="M60 0V400M120 0V400M180 0V400M240 0V400M300 0V400M360 0V400" /></g>
+                <ellipse cx="300" cy="100" rx="60" ry="90" fill="#6F8A73" opacity="0.5" />
+              </svg>
+            }
+          }
+          <figure class="rcard__body">
+            <div class="rcard__top">
+              <span class="stars" [attr.aria-label]="review.rating + ' de 5 estrellas'" role="img">
+                @for (filled of review.stars; track $index) {
+                  <app-icon name="star" [size]="14" [filled]="filled" />
+                }
+              </span>
+              <span class="rcard__flag">Reseña de ejemplo</span>
+            </div>
+            <blockquote class="serif">“{{ review.quote }}”</blockquote>
+            <figcaption class="rcard__foot">
+              <span>
+                <strong>{{ review.author }}</strong>
+                <span class="rcard__city">{{ review.city }}</span>
+              </span>
+              <span class="rcard__tried">Probó: {{ review.tried }}</span>
+            </figcaption>
+          </figure>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

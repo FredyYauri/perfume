@@ -1,0 +1,137 @@
+@use 'mixins' as *;
+
+.filters {
+  position: sticky;
+  top: var(--header-offset);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.filters-head,
+.apply,
+.scrim {
+  display: none;
+}
+
+.brands {
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &[open] summary app-icon {
+    transform: rotate(180deg);
+  }
+}
+
+.brands__count {
+  color: var(--acc);
+}
+
+.stock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-2);
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+  }
+
+  &:has(input:focus-visible) .stock__box {
+    @include focus-ring;
+  }
+
+  &:has(input:checked) .stock__box {
+    background: var(--acc);
+    border-color: var(--acc);
+    color: var(--white);
+  }
+}
+
+.stock__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: transparent;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.clear {
+  align-self: flex-start;
+}
+
+@include down(md) {
+  .filters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 70;
+    width: min(340px, 88vw);
+    padding: 20px 20px 40px;
+    overflow-y: auto;
+    background: var(--white);
+    transform: translateX(-105%);
+    transition:
+      transform 0.35s var(--ease),
+      visibility 0.35s;
+    box-shadow: 20px 0 60px -30px rgb(15 27 43 / 50%);
+    visibility: hidden;
+
+    &.open {
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  .filters-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .serif {
+      font-size: 28px;
+    }
+  }
+
+  .apply {
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .scrim.open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: rgb(15 27 43 / 40%);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,104 @@
+<section id="crea" class="studio-section" aria-labelledby="studio-title">
+  <div class="wrap-wide">
+    <div class="studio-head">
+      <div class="studio-head__text">
+        <p class="flabel flabel--accent">Estudio de creación</p>
+        @if (headingLevel() === 1) {
+          <h1 id="studio-title" class="studio-title serif">Crea tu selección</h1>
+        } @else {
+          <h2 id="studio-title" class="studio-title serif">Crea tu selección</h2>
+        }
+        <p class="studio-lead">Combina fragancias originales y encuentra tus favoritas.</p>
+      </div>
+      <ol class="steps" aria-label="Progreso">
+        @for (step of steps(); track step.label; let index = $index; let last = $last) {
+          <li class="step {{ step.state }}" [attr.aria-current]="step.state === 'now' ? 'step' : null">
+            <span class="n">0{{ index + 1 }}</span>{{ step.label }}
+            @if (step.state === 'done') {
+              <span class="visually-hidden">(completado)</span>
+            }
+          </li>
+          @if (!last) {
+            <li class="step-line" aria-hidden="true"></li>
+          }
+        }
+      </ol>
+    </div>
+
+    <div class="fbar">
+      <div class="fbar__text">
+        <span class="flabel flabel--accent2">Paso 01</span>
+        <span class="fbar__title serif">Elige tu formato</span>
+        <span class="fbar__hint">{{ formatHint() }}</span>
+      </div>
+      <app-size-selector
+        class="fbar__opts"
+        variant="cards"
+        label="Formato para tu set"
+        [priceIsFrom]="true"
+        [options]="formatOptions()"
+        [selectedMl]="selection.format()"
+        (selectedMlChange)="setFormat($event)"
+      />
+    </div>
+
+    <div class="studio">
+      <app-filter-panel
+        [form]="form"
+        [categories]="perfumeService.categories()"
+        [categoryCounts]="perfumeService.categoryCounts()"
+        [profiles]="perfumeService.profiles()"
+        [options]="perfumeService.filterOptions()"
+        [activeCount]="activeFilters()"
+        [open]="filtersOpen()"
+        (close)="filtersOpen.set(false)"
+        (clear)="clearFilters()"
+      />
+
+      <div class="explorer">
+        <div class="toolbar">
+          <app-search-bar [control]="form.controls.search" />
+          <button
+            type="button"
+            class="chip only-mobile"
+            aria-controls="catalog-filters"
+            [attr.aria-expanded]="filtersOpen()"
+            (click)="filtersOpen.set(true)"
+          >
+            <app-icon name="filter" [size]="16" />
+            Filtros
+            @if (activeFilters()) {
+              <span class="badge">{{ activeFilters() }}</span>
+            }
+          </button>
+          <div class="sort" role="group" aria-label="Ordenar">
+            @for (option of sortOptions; track option.value) {
+              <button
+                type="button"
+                class="sortb"
+                [class.on]="sort() === option.value"
+                [attr.aria-pressed]="sort() === option.value"
+                (click)="setSort(option.value)"
+              >
+                {{ option.label }}
+              </button>
+            }
+          </div>
+        </div>
+        <p class="result-label" aria-live="polite">{{ resultLabel() }}</p>
+
+        <app-perfume-catalog
+          [perfumes]="results()"
+          [ml]="selection.format()"
+          [loading]="perfumeService.isLoading()"
+          [error]="perfumeService.hasError()"
+          [skeletonCount]="skeletonCount"
+          (retry)="perfumeService.retry()"
+          (clearFilters)="clearFilters()"
+        />
+      </div>
+
+      <app-selection-panel class="studio-panel" [(expanded)]="panelExpanded" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+@use 'mixins' as *;
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--sand-3);
+}
+
+.stepper__btn {
+  @include reset-button;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--ink);
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--white);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.stepper__value {
+  min-width: 2ch;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+:host(.is-large) {
+  .stepper {
+    padding: 4px;
+  }
+
+  .stepper__btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .stepper__value {
+    min-width: 3ch;
+    font-size: 16px;
+  }
+}

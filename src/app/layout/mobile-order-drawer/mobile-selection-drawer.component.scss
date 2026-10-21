@@ -1,0 +1,50 @@
+@use 'mixins' as *;
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 54;
+  display: none;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: rgb(15 27 43 / 40%);
+  cursor: pointer;
+  animation: fade 0.25s ease;
+
+  &.open {
+    display: block;
+  }
+}
+
+.drawer {
+  position: fixed;
+  z-index: 55;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  max-width: 560px;
+  margin: 0 auto;
+
+  // Escritorio: panel flotante solo cuando se abre desde el header.
+  @include up(xl) {
+    left: auto;
+    right: 24px;
+    top: var(--header-offset);
+    bottom: auto;
+    width: 360px;
+    --panel-max-height: calc(100dvh - var(--header-offset) - 24px);
+    display: none;
+    animation: rise 0.3s var(--ease) both;
+
+    &.open {
+      display: block;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "citrico",
+    "name": "Cítrico",
+    "color": "#D9A92E",
+    "mood": "fresco limpio"
+  },
+  {
+    "id": "floral",
+    "name": "Floral",
+    "color": "#D98A9B",
+    "mood": "elegante sofisticado"
+  },
+  {
+    "id": "amaderado",
+    "name": "Amaderado",
+    "color": "#8B6B4A",
+    "mood": "elegante sofisticado madera"
+  },
+  {
+    "id": "dulce",
+    "name": "Dulce",
+    "color": "#C98A4B",
+    "mood": "dulce envolvente"
+  },
+  {
+    "id": "ambar",
+    "name": "Ámbar",
+    "color": "#B5532A",
+    "mood": "dulce envolvente"
+  },
+  {
+    "id": "especiado",
+    "name": "Especiado",
+    "color": "#8E3B2E",
+    "mood": "intenso nocturno"
+  },
+  {
+    "id": "acuatico",
+    "name": "Acuático",
+    "color": "#4F8FB0",
+    "mood": "fresco limpio agua"
+  },
+  {
+    "id": "cuero",
+    "name": "Cuero",
+    "color": "#3E2A22",
+    "mood": "intenso nocturno"
+  }
+]

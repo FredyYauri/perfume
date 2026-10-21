@@ -1,0 +1,59 @@
+// Tokens de diseño tomados de "Diseño Pag Helton" (ESENCIA LAB).
+// Para adaptar la marca, cambia solo estos valores.
+:root {
+  color-scheme: light;
+
+  // Marca
+  --acc: #1f5f66; // verde petróleo
+  --acc-rgb: 31 95 102;
+  --acc2: #b5532a; // terracota
+  --peach: #e3a587;
+
+  // Neutros
+  --ink: #18202c;
+  --ink-2: #3a4250;
+  --ink-3: #5a6170;
+  --ink-4: #7a8090;
+  --navy: #0f1b2b;
+  --navy-2: #0b1522;
+  --white: #ffffff;
+  --paper: #fbfaf7;
+  --sand: #f5f5f3;
+  --sand-2: #f1eee8;
+  --sand-3: #ece8e1;
+  --stone: #e8e4dc;
+  --mist: #f4f2ed;
+  --steel: #aeb5c0;
+  --steel-2: #c6cbd4;
+  --danger: #9a4321;
+  --danger-bg: #f1e1d6;
+
+  --line: rgb(24 32 44 / 12%);
+  --line-soft: rgb(24 32 44 / 8%);
+  --line-strong: rgb(24 32 44 / 16%);
+
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 26px 46px -28px rgb(15 27 43 / 50%);
+  --shadow-panel: 0 30px 60px -40px rgb(15 27 43 / 55%);
+  --shadow-float: 0 18px 40px -22px rgb(15 27 43 / 45%);
+
+  --wrap: 1320px;
+  --wrap-wide: 1480px;
+  --gutter: 40px;
+  --header-offset: 96px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 16px;
+  }
+}

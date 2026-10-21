@@ -1,0 +1,197 @@
+@use 'mixins' as *;
+
+.opt {
+  @include reset-button;
+  position: relative;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    transform 0.2s;
+
+  &.is-out {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// ---------- cards: paso "Elige tu formato" ----------
+.sizes--cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 92px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgb(24 32 44 / 14%);
+    background: var(--paper);
+    color: var(--ink);
+    text-align: left;
+
+    &:hover:not(.is-out) {
+      border-color: var(--acc);
+      transform: translateY(-2px);
+    }
+
+    &.on {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--mist);
+
+      .opt__caption {
+        color: #e3e7ec;
+      }
+
+      .opt__price {
+        color: var(--steel);
+      }
+
+      .opt__liq {
+        fill: var(--acc2);
+      }
+
+      .opt__check {
+        display: inline-flex;
+      }
+    }
+  }
+
+  .opt__liq {
+    fill: var(--acc);
+    transition: fill 0.25s;
+  }
+
+  .opt__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .opt__ml {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .opt__caption {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  .opt__price {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+
+  .opt__check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--acc2);
+    color: var(--white);
+  }
+
+  @include down(sm) {
+    gap: 6px;
+
+    .opt {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      min-height: 0;
+      padding: 12px;
+    }
+
+    .opt__vial {
+      display: none;
+    }
+
+    .opt__ml {
+      font-size: 24px;
+    }
+  }
+}
+
+// ---------- pills: ficha de producto ----------
+.sizes--pills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 16px;
+  background: var(--stone);
+
+  .opt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-height: 56px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    text-align: left;
+
+    &:hover:not(.is-out) {
+      background: rgb(255 255 255 / 60%);
+    }
+
+    &.on {
+      background: var(--paper);
+      box-shadow:
+        0 6px 16px -10px rgb(15 27 43 / 50%),
+        inset 0 0 0 1px var(--acc);
+
+      .opt__ml {
+        color: var(--acc);
+      }
+    }
+  }
+
+  .opt__ml {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .opt__price {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+}
+
+// ---------- mini: ítems del panel ----------
+.sizes--mini {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--sand-3);
+
+  .opt {
+    min-width: 40px;
+    min-height: 28px;
+    padding: 0 8px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    color: var(--ink-2);
+
+    &.on {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    &.is-out {
+      text-decoration: line-through;
+    }
+  }
+}

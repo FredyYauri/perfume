@@ -1,0 +1,26 @@
+[
+  {
+    "id": "oriental",
+    "name": "Esencia oriental",
+    "description": "Orientales árabes intensos, dulces y de gran rendimiento.",
+    "order": 1
+  },
+  {
+    "id": "clasicos",
+    "name": "Clásicos contemporáneos",
+    "description": "Las fragancias icónicas de las grandes casas de diseñador.",
+    "order": 2
+  },
+  {
+    "id": "nicho",
+    "name": "Autor y nicho",
+    "description": "Perfumería de autor, exclusiva y de alta concentración.",
+    "order": 3
+  },
+  {
+    "id": "iconos",
+    "name": "Íconos de colección",
+    "description": "Ediciones especiales y joyas difíciles de encontrar.",
+    "order": 4
+  }
+]

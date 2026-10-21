@@ -1,0 +1,46 @@
+<div class="sizes sizes--{{ variant() }}" role="group" [attr.aria-label]="label()">
+  @for (option of items(); track option.ml) {
+    @let selected = selectedMl() === option.ml;
+    <button
+      type="button"
+      class="opt"
+      [class.on]="selected"
+      [class.is-out]="option.disabled"
+      [attr.aria-pressed]="selected"
+      [attr.aria-disabled]="option.disabled || null"
+      [attr.aria-label]="option.ml + ' ml' + (option.disabled ? ', ' + outOfStock : '')"
+      (click)="select(option.ml, option.disabled)"
+    >
+      @switch (variant()) {
+        @case ('cards') {
+          <svg class="opt__vial" width="24" height="56" viewBox="0 0 24 56" aria-hidden="true">
+            <rect x="8" y="1" width="8" height="9" rx="1.5" fill="currentColor" opacity="0.85" />
+            <rect x="5" y="10" width="14" height="44" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.45" />
+            <rect class="opt__liq" x="7" [attr.y]="52 - option.level" width="10" [attr.height]="option.level" rx="4" />
+          </svg>
+          <span class="opt__text">
+            <span class="opt__ml serif">{{ option.ml }} ml</span>
+            <span class="opt__caption">{{ option.caption }}</span>
+            @if (option.price != null) {
+              <span class="opt__price">{{ priceIsFrom() ? 'Desde ' : '' }}{{ option.price | price }}</span>
+            }
+          </span>
+          <span class="opt__check" aria-hidden="true"><app-icon name="check" [size]="14" [strokeWidth]="2.2" /></span>
+        }
+        @case ('pills') {
+          <span class="opt__ml">{{ option.ml }} ml</span>
+          <span class="opt__price">
+            @if (option.disabled) {
+              {{ outOfStock }}
+            } @else if (option.price != null) {
+              {{ option.price | price }}
+            }
+          </span>
+        }
+        @default {
+          {{ option.ml }} ml
+        }
+      }
+    </button>
+  }
+</div>
