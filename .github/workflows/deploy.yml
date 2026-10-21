@@ -1,0 +1,81 @@
+name: Desplegar en Vercel
+
+# - Pull request a main: prueba y compila (sin desplegar).
+# - Push a main: prueba, compila y publica en producción.
+# - Manual (pestaña Actions → "Run workflow"): publica en producción o como vista previa.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Entorno de Vercel
+        type: choice
+        options: [production, preview]
+        default: production
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '24'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  test:
+    name: Pruebas y build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          # Sin package-lock.json versionado no hay caché que usar.
+          package-manager-cache: false
+      - run: npm install --no-audit --no-fund
+      - run: npm test -- --watch=false
+      - run: npm run build
+
+  deploy:
+    name: Publicar en Vercel
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment || 'production' }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          # Sin package-lock.json versionado no hay caché que usar.
+          package-manager-cache: false
+      - name: Revisar secretos
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Falta el secreto $name en Settings → Secrets and variables → Actions."
+              exit 1
+            fi
+          done
+      - run: npm install --global vercel@latest
+      - name: Descargar configuración del proyecto
+        run: vercel pull --yes --environment=${{ inputs.environment || 'production' }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Compilar
+        run: vercel build ${{ (inputs.environment || 'production') == 'production' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Publicar
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt ${{ (inputs.environment || 'production') == 'production' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "### Publicado: $url" >> "$GITHUB_STEP_SUMMARY"

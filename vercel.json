@@ -3,5 +3,13 @@
   "framework": "angular",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/perfume/browser",
-  "rewrites": [{ "source": "/((?!assets/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": false
+  }
 }
