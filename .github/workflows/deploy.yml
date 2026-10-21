@@ -37,6 +37,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
+          # Sin package-lock.json versionado no hay caché que usar.
+          package-manager-cache: false
       - run: npm install --no-audit --no-fund
       - run: npm test -- --watch=false
       - run: npm run build
@@ -54,6 +56,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
+          # Sin package-lock.json versionado no hay caché que usar.
+          package-manager-cache: false
       - name: Revisar secretos
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
