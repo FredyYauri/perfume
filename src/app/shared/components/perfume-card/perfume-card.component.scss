@@ -1,0 +1,282 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  grid-row: span 2;
+  min-width: 0;
+}
+
+:host(.tall) {
+  grid-row: span 3;
+}
+
+:host(.wide) {
+  grid-column: span 2;
+
+  .pcard {
+    flex-direction: row;
+  }
+
+  .art {
+    flex: 0 0 52%;
+  }
+
+  .info {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    padding: 22px;
+  }
+}
+
+.pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s;
+  animation: rise 0.45s var(--ease) both;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+
+    .add:not(:disabled) {
+      background: var(--acc);
+      border-color: var(--acc);
+      transform: scale(1.1);
+      box-shadow: 0 10px 22px -10px var(--acc);
+    }
+
+    app-perfume-art {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.art {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+
+  app-perfume-art {
+    height: 100%;
+    transition: transform 0.6s var(--ease);
+  }
+}
+
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  background: rgb(251 250 247 / 92%);
+  color: var(--ink);
+  font-weight: 500;
+
+  &--hot {
+    background: var(--acc2);
+    color: var(--white);
+  }
+
+  &--new {
+    background: var(--acc);
+    color: var(--white);
+  }
+
+  &--night {
+    background: var(--navy);
+    color: var(--mist);
+  }
+
+  &--out {
+    background: var(--danger-bg);
+    color: var(--danger);
+  }
+}
+
+.fav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+  background: rgb(15 27 43 / 78%);
+  color: var(--mist);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+
+  .pcard:hover &,
+  .pcard:focus-within & {
+    opacity: 1;
+  }
+
+  // En pantallas táctiles no hay hover: la ficha se abre desde el nombre.
+  @media (hover: none) {
+    display: none;
+  }
+}
+
+.reveal__label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--steel-2);
+}
+
+.reveal__notes {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+
+    &::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--acc2);
+    }
+  }
+}
+
+.reveal__ideal {
+  font-size: 13px;
+  color: var(--steel-2);
+}
+
+.reveal__btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgb(244 242 237 / 50%);
+  color: var(--mist);
+  font-size: 13px;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: var(--mist);
+    color: var(--navy);
+  }
+}
+
+.info {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px 16px;
+}
+
+.info__brand {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.info__name {
+  font-size: 25px;
+  line-height: 1.05;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.info__family {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.info__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.info__price {
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  span {
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+}
+
+.add {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+
+  &.in {
+    background: var(--acc);
+    border-color: var(--acc);
+  }
+}
+
+@include down(xs) {
+  :host,
+  :host(.tall) {
+    grid-row: auto;
+  }
+
+  :host(.wide) {
+    grid-column: auto;
+
+    .pcard {
+      flex-direction: column;
+    }
+
+    .art {
+      flex: none;
+    }
+  }
+
+  .art {
+    flex: none;
+    height: 220px;
+  }
+}

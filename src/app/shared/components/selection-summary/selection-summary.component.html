@@ -1,0 +1,82 @@
+@let s = summary();
+
+<div class="pbody">
+  <p class="intro">Tu colección personal empieza aquí.</p>
+
+  <div class="slots" role="img" [attr.aria-label]="slotsLabel()">
+    @for (slot of slots(); track slot.index) {
+      <div class="slot" [class.full]="slot.color" [class.goal]="slot.isGoal">
+        <span class="lq" [style.background]="slot.color"></span>
+      </div>
+    }
+  </div>
+  <div class="slots slots--labels" aria-hidden="true">
+    @for (slot of slots(); track slot.index) {
+      <span [class.goal]="slot.isGoal">{{ slot.label }}</span>
+    }
+  </div>
+
+  @if (selection.isEmpty()) {
+    <app-empty-state [compact]="true" [title]="texts.emptySelectionTitle" [message]="texts.emptySelectionMessage" />
+  } @else {
+    <div class="items">
+      @for (item of s.items; track item.key) {
+        <app-selection-item
+          [item]="item"
+          [sizes]="sizesByPerfume().get(item.perfumeId) ?? []"
+          (sizeChange)="selection.changeSize(item.key, $event)"
+          (quantityChange)="selection.updateQuantity(item.key, $event)"
+          (remove)="selection.remove(item.key)"
+        />
+      }
+    </div>
+  }
+
+  <div class="hints">
+    @if (discountMessage()) {
+      <p class="hint">
+        <span class="hint__icon hint__icon--pct" aria-hidden="true">%</span>
+        <span>{{ discountMessage() }}</span>
+      </p>
+    }
+    <p class="hint">
+      <span class="hint__icon" aria-hidden="true"><app-icon name="box" [size]="12" [strokeWidth]="2" /></span>
+      <span>{{ texts.shippingNote }}</span>
+    </p>
+  </div>
+
+  <dl class="totals">
+    <div class="trow">
+      <dt>Subtotal</dt>
+      <dd>{{ s.subtotal | price }}</dd>
+    </div>
+    <div class="trow">
+      <dt>Descuento</dt>
+      <dd [class.is-discount]="s.discount > 0">{{ s.discount > 0 ? '− ' : '' }}{{ s.discount | price }}</dd>
+    </div>
+    <div class="trow">
+      <dt>Envío</dt>
+      <dd>Por coordinar</dd>
+    </div>
+    <div class="trow trow--total">
+      <dt>Total estimado</dt>
+      <dd class="total-n serif" aria-live="polite">{{ s.total | price }}</dd>
+    </div>
+  </dl>
+
+  <button
+    type="button"
+    class="btn-main btn-main--block order"
+    [attr.aria-disabled]="selection.isEmpty()"
+    (click)="placeOrder()"
+  >
+    {{ texts.orderButton }}
+    <svg class="arr" width="26" height="12" viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <path d="M0 6h24M19 1l5 5-5 5" />
+    </svg>
+  </button>
+  <p class="note">{{ texts.orderNote }}</p>
+  @if (!selection.isEmpty()) {
+    <button type="button" class="link-sec clear" (click)="selection.clear()">Limpiar selección</button>
+  }
+</div>

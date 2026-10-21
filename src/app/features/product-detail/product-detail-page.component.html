@@ -1,0 +1,110 @@
+<div class="wrap page">
+  <a class="back link-sec" routerLink="/" fragment="crea"><app-icon name="arrowLeft" [size]="14" /> Volver al estudio</a>
+
+  @if (perfumeService.isLoading()) {
+    <app-loading-skeleton variant="detail" />
+  } @else if (perfumeService.hasError()) {
+    <app-empty-state tone="error" [title]="texts.loadErrorTitle" [message]="texts.loadErrorMessage">
+      <button type="button" class="chip on" (click)="perfumeService.retry()">Reintentar</button>
+    </app-empty-state>
+  } @else if (perfume(); as p) {
+    <article class="detail">
+      <div class="detail__art">
+        <app-perfume-art [perfume]="p" [ml]="selectedMl() ?? 5" [eager]="true" />
+        <app-favorite-button class="detail__fav" [perfumeId]="p.id" [perfumeName]="p.brand + ' ' + p.name" />
+        @if (p.tags[0]; as tag) {
+          <span class="detail__tag">{{ tag }}</span>
+        }
+      </div>
+
+      <div class="detail__info">
+        <div class="detail__head">
+          <span class="detail__brand">{{ p.brand }}</span>
+          <h1 class="detail__name serif">{{ p.name }}</h1>
+          <p class="detail__desc">{{ p.description }}</p>
+        </div>
+
+        <div class="pyramid" role="list" aria-label="Pirámide olfativa">
+          @for (item of pyramid(); track item.stage) {
+            <div class="pyramid__item" role="listitem">
+              <span class="pyramid__stage">{{ item.stage }}</span>
+              <span class="pyramid__note">{{ item.note }}</span>
+            </div>
+          }
+        </div>
+
+        @if (details(); as d) {
+          <dl class="facts">
+            <div class="trow"><dt>Familia</dt><dd>{{ p.olfactoryFamily }}</dd></div>
+            <div class="trow"><dt>Colección</dt><dd>{{ d.category }}</dd></div>
+            <div class="trow"><dt>Ideal para</dt><dd>{{ p.occasions.join(', ') }}</dd></div>
+            <div class="trow"><dt>Para</dt><dd>{{ d.gender }}</dd></div>
+            <div class="trow">
+              <dt>Intensidad</dt>
+              <dd class="intensity">
+                <span class="bars" aria-hidden="true">
+                  <i class="f"></i><i [class.f]="d.intensityLevel >= 2"></i><i [class.f]="d.intensityLevel >= 3"></i>
+                </span>
+                {{ p.intensity }}
+              </dd>
+            </div>
+          </dl>
+        }
+
+        <div class="buy">
+          <p class="flabel">Elige tu formato</p>
+          <app-size-selector variant="pills" label="Formato" [options]="sizeOptions()" [(selectedMl)]="selectedMl" />
+
+          <div class="buy__row">
+            <app-quantity-stepper
+              class="is-large"
+              label="cantidad"
+              [(value)]="quantity"
+              [max]="maxQuantity()"
+            />
+            <button
+              type="button"
+              class="btn-main buy__cta"
+              [disabled]="!isAvailable()"
+              (click)="add()"
+            >
+              @if (size(); as s) {
+                @if (isAvailable()) {
+                  Añadir {{ s.ml }} ml · {{ s.price * quantity() | price }}
+                } @else {
+                  {{ texts.outOfStock }}
+                }
+              } @else {
+                {{ texts.outOfStock }}
+              }
+              <svg class="arr" width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M0 6h20M15 1l5 5-5 5" />
+              </svg>
+            </button>
+          </div>
+          @if (inSelection()) {
+            <p class="buy__note" role="status">
+              <app-icon name="check" [size]="14" [strokeWidth]="2" /> Ya tienes {{ inSelection() }} en tu selección ({{ selectedMl() }} ml).
+            </p>
+          }
+          @if (size(); as s) {
+            @if (s.stock > 0 && s.stock <= 5) {
+              <p class="buy__stock">Quedan {{ s.stock }} unidades en {{ s.ml }} ml.</p>
+            }
+          }
+        </div>
+      </div>
+    </article>
+
+    @if (related().length) {
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title" class="section-title related__title">También podría gustarte</h2>
+        <div class="related__grid">
+          @for (item of related(); track item.id) {
+            <app-perfume-card [perfume]="item" [ml]="selectedMl() ?? 5" [allowWide]="false" />
+          }
+        </div>
+      </section>
+    }
+  }
+</div>

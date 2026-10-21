@@ -1,0 +1,171 @@
+@use 'mixins' as *;
+
+.pbody {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px 22px;
+}
+
+.intro {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+
+  &--labels {
+    margin: 6px 2px 14px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+
+    span {
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+
+    .goal {
+      color: var(--acc2);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+}
+
+.slot {
+  position: relative;
+  height: 46px;
+  border-radius: 10px 10px 14px 14px;
+  border: 1px dashed rgb(24 32 44 / 25%);
+  overflow: hidden;
+  transition: border-color 0.3s;
+
+  &.full {
+    border-style: solid;
+    border-color: rgb(24 32 44 / 20%);
+
+    .lq {
+      height: 72%;
+    }
+  }
+
+  &.goal {
+    border-color: var(--acc2);
+  }
+}
+
+.lq {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  transition: height 0.5s var(--ease);
+}
+
+.hints {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--sand-2);
+}
+
+.hint {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.hint__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--acc);
+  color: var(--acc);
+
+  &--pct {
+    border-color: var(--acc2);
+    color: var(--acc2);
+    font-size: 11px;
+    font-weight: 600;
+  }
+}
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+
+.trow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink-2);
+
+  dd {
+    margin: 0;
+  }
+
+  .is-discount {
+    color: var(--acc);
+    font-weight: 500;
+  }
+
+  &--total {
+    align-items: baseline;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgb(24 32 44 / 14%);
+    color: var(--ink);
+
+    dt {
+      font-weight: 500;
+    }
+  }
+}
+
+.total-n {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.order {
+  margin-top: 18px;
+  min-height: 60px;
+}
+
+.note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.clear {
+  align-self: center;
+  margin-top: 14px;
+  font-size: 13px;
+}

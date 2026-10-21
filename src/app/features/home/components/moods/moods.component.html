@@ -1,0 +1,68 @@
+<section id="explorar" class="moods-section" aria-labelledby="moods-title">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="flabel flabel--accent">Encuentra tu estilo</p>
+        <h2 id="moods-title" class="section-title">¿Qué quieres sentir hoy?</h2>
+      </div>
+      <p>Elige una sensación y el estudio filtrará las fragancias que la comparten.</p>
+    </div>
+
+    <ul class="moods" role="list">
+      @for (mood of moods; track mood.id; let index = $index) {
+        <li class="mood-item" [class.lift]="index % 2 === 1">
+          <a class="mood mood--{{ mood.theme }}" routerLink="/" fragment="crea" [queryParams]="mood.queryParams">
+            @switch (mood.theme) {
+              @case ('fresh') {
+                <svg aria-hidden="true" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+                  <circle cx="210" cy="110" r="90" fill="#A9CBC6" opacity="0.7" />
+                  <circle cx="210" cy="110" r="128" fill="none" stroke="#2F6E73" stroke-opacity="0.35" />
+                  <circle cx="210" cy="110" r="166" fill="none" stroke="#2F6E73" stroke-opacity="0.2" />
+                  <path d="M0 250Q50 230 100 250T200 250T300 250" fill="none" stroke="#2F6E73" stroke-opacity="0.4" />
+                  <path d="M0 270Q50 250 100 270T200 270T300 270" fill="none" stroke="#2F6E73" stroke-opacity="0.25" />
+                  <circle cx="80" cy="150" r="22" fill="#E3C35A" opacity="0.8" />
+                </svg>
+              }
+              @case ('sweet') {
+                <svg aria-hidden="true" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+                  <circle cx="100" cy="120" r="110" fill="#E5BE8B" opacity="0.75" />
+                  <circle cx="200" cy="170" r="90" fill="#C98A4B" opacity="0.45" />
+                  <circle cx="150" cy="140" r="40" fill="#FBF3E6" opacity="0.65" />
+                  <circle cx="240" cy="70" r="14" fill="#B5532A" />
+                </svg>
+              }
+              @case ('night') {
+                <svg aria-hidden="true" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+                  <path d="M60 400C60 320 140 300 120 220S180 120 160 40" fill="none" stroke="#C6CBD4" stroke-opacity="0.35" stroke-width="1.2" />
+                  <path d="M100 400C110 330 180 300 160 230S220 140 210 60" fill="none" stroke="#C6CBD4" stroke-opacity="0.2" stroke-width="1.2" />
+                  <path d="M140 400C150 340 230 310 200 240" fill="none" stroke="#C6CBD4" stroke-opacity="0.15" />
+                  <circle cx="220" cy="110" r="70" fill="#1F5F66" opacity="0.5" />
+                  <circle cx="232" cy="96" r="6" fill="#E07A4A" />
+                  <circle cx="70" cy="80" r="1.6" fill="#fff" />
+                  <circle cx="260" cy="200" r="1.2" fill="#fff" />
+                  <circle cx="40" cy="190" r="1" fill="#fff" />
+                </svg>
+              }
+              @default {
+                <svg aria-hidden="true" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+                  <g stroke="#4B3F66" stroke-opacity="0.25"><path d="M40 0V400M80 0V400M120 0V400M160 0V400M200 0V400M240 0V400" /></g>
+                  <ellipse cx="150" cy="140" rx="64" ry="96" fill="#B7ACCB" opacity="0.7" />
+                  <ellipse cx="150" cy="140" rx="30" ry="96" fill="none" stroke="#4B3F66" stroke-opacity="0.5" />
+                  <circle cx="150" cy="140" r="8" fill="#8A6A3E" />
+                </svg>
+              }
+            }
+            <div class="mood__body">
+              <span class="mood__n">0{{ index + 1 }}</span>
+              <h3 class="mood__title serif">{{ mood.title }}</h3>
+              <div class="mood__foot">
+                <span class="mood__notes">{{ mood.notes }}</span>
+                <span class="go" aria-hidden="true"><app-icon name="arrowRight" [size]="16" /></span>
+              </div>
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+@use 'mixins' as *;
+
+.foot {
+  background: var(--navy-2);
+  color: #e3e7ec;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  border-top: 1px solid rgb(244 242 237 / 8%);
+
+  a {
+    color: var(--steel-2);
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+
+  .flabel {
+    color: var(--steel);
+    margin: 0 0 4px;
+  }
+}
+
+.fgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 40px;
+
+  @include down(nav) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include down(xs) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.brand__logo {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+
+  span {
+    font-weight: 300;
+    color: #8fc3c0;
+  }
+}
+
+.brand__tagline {
+  max-width: 380px;
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--mist);
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgb(244 242 237 / 25%);
+    color: #e3e7ec;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    font-size: 12px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgb(244 242 237 / 22%);
+  }
+}
+
+.pays__note {
+  font-size: 12px;
+  color: var(--steel);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(244 242 237 / 12%);
+  font-size: 13px;
+  color: var(--steel);
+
+  p {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+}
+
+.legal__icon {
+  margin-top: 2px;
+  color: #8fc3c0;
+}

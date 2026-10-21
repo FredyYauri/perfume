@@ -1,0 +1,114 @@
+@use 'mixins' as *;
+
+.mani-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 112px;
+  padding-bottom: 96px;
+
+  .wrap {
+    position: relative;
+  }
+}
+
+.mani-deco {
+  position: absolute;
+  right: -180px;
+  top: 40px;
+  width: 600px;
+  height: 600px;
+  opacity: 0.6;
+}
+
+.mani {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 56px;
+  align-items: end;
+
+  @include down(lg) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mani__text {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  .flabel {
+    margin: 0;
+  }
+}
+
+.mani__title {
+  font-size: clamp(48px, 7vw, 108px);
+  line-height: 0.95;
+
+  em {
+    color: var(--acc2);
+  }
+}
+
+.mani__art {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+
+  > div {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.arch {
+  height: 300px;
+  border-radius: 160px 160px 20px 20px;
+  background: var(--navy);
+}
+
+.label-card {
+  height: 220px;
+  border-radius: 20px;
+  background: #e3e6e1;
+}
+
+.ideas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  margin: 72px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgb(24 32 44 / 18%);
+}
+
+.idea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 28px 8px 0;
+
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  p {
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+}
+
+.idea__n {
+  font-size: 44px;
+  line-height: 1;
+  color: var(--acc2);
+}

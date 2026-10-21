@@ -1,0 +1,35 @@
+<section class="wrap page" aria-labelledby="selection-title">
+  <div class="layout">
+    <div class="intro">
+      <p class="flabel flabel--accent">Paso 03 · Completa tu set</p>
+      <h1 id="selection-title" class="section-title">Revisa tu <em>selección.</em></h1>
+      <p class="lead">
+        Ajusta formatos y cantidades. Cuando esté lista, toca “Realizar pedido” y te llevaremos a WhatsApp con el
+        detalle para confirmar disponibilidad, pago y entrega.
+      </p>
+
+      <ol class="how" role="list">
+        <li><span class="serif">i.</span> Revisa tus muestras y su formato.</li>
+        <li><span class="serif">ii.</span> Toca “Realizar pedido”: se abre WhatsApp con tu pedido escrito.</li>
+        <li><span class="serif">iii.</span> Te confirmamos stock, forma de pago y envío.</li>
+      </ol>
+
+      @if (rules().length) {
+        <ul class="rules" role="list">
+          @for (rule of rules(); track rule.id) {
+            <li>
+              <span class="rules__pct serif">−{{ rule.percentage }}%</span>
+              <span>{{ rule.description }}</span>
+            </li>
+          }
+        </ul>
+      }
+
+      <a class="link-sec back" routerLink="/" fragment="crea">
+        <app-icon name="arrowLeft" [size]="14" /> Seguir explorando
+      </a>
+    </div>
+
+    <app-selection-panel class="panel" [expanded]="true" />
+  </div>
+</section>

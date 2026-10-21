@@ -1,0 +1,70 @@
+@use 'mixins' as *;
+
+.toasts {
+  position: fixed;
+  z-index: 80;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 8px;
+  width: min(420px, calc(100% - 32px));
+  pointer-events: none;
+
+  // En móvil/tablet el panel de selección ocupa la parte inferior.
+  @include down(xl) {
+    bottom: 108px;
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--navy);
+  color: var(--mist);
+  box-shadow: var(--shadow-float);
+  font-size: 14px;
+  pointer-events: auto;
+  animation: rise 0.3s var(--ease) both;
+}
+
+.toast__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--acc);
+  color: var(--white);
+
+  .toast--info & {
+    background: transparent;
+    border: 1px solid rgb(244 242 237 / 35%);
+  }
+
+  .toast--error & {
+    background: var(--acc2);
+  }
+}
+
+.toast__message {
+  flex: 1;
+}
+
+.toast__close {
+  @include reset-button;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--steel);
+
+  &:hover {
+    color: var(--white);
+  }
+}

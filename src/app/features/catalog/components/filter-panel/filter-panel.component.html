@@ -1,0 +1,72 @@
+<button
+  type="button"
+  class="scrim"
+  [class.open]="open()"
+  tabindex="-1"
+  aria-label="Cerrar filtros"
+  (click)="close.emit()"
+></button>
+
+<aside
+  id="catalog-filters"
+  class="filters"
+  [class.open]="open()"
+  aria-label="Filtros de exploración"
+  [appBodyScrollLock]="open()"
+  [formGroup]="form()"
+>
+  <div class="filters-head">
+    <span class="serif">Filtros</span>
+    <button type="button" class="icb" aria-label="Cerrar filtros" (click)="close.emit()">
+      <app-icon name="close" [size]="16" />
+    </button>
+  </div>
+
+  <div>
+    <p class="flabel">Colección</p>
+    <app-category-filter formControlName="category" [categories]="categories()" [counts]="categoryCounts()" />
+  </div>
+
+  <div>
+    <p class="flabel">Perfil olfativo</p>
+    <app-chip-group formControlName="profiles" label="Perfil olfativo" [options]="profileOptions()" />
+  </div>
+
+  <div>
+    <p class="flabel">Momento</p>
+    <app-chip-group formControlName="occasions" label="Momento" appearance="ring" [options]="occasionOptions()" />
+  </div>
+
+  <div>
+    <p class="flabel">Intensidad</p>
+    <app-chip-group formControlName="intensity" label="Intensidad" [multiple]="false" [options]="intensityOptions()" />
+  </div>
+
+  <div>
+    <p class="flabel">Para</p>
+    <app-chip-group formControlName="genders" label="Género" [options]="genderOptions()" />
+  </div>
+
+  <details class="brands">
+    <summary class="flabel">
+      Marca
+      @if (form().controls.brands.value.length) {
+        <span class="brands__count">({{ form().controls.brands.value.length }})</span>
+      }
+      <app-icon name="chevronDown" [size]="14" />
+    </summary>
+    <app-chip-group formControlName="brands" label="Marca" [options]="brandOptions()" />
+  </details>
+
+  <label class="stock">
+    <input type="checkbox" formControlName="onlyInStock" />
+    <span class="stock__box" aria-hidden="true"><app-icon name="check" [size]="12" [strokeWidth]="2.4" /></span>
+    Solo con stock en el formato elegido
+  </label>
+
+  @if (activeCount()) {
+    <button type="button" class="link-sec clear" (click)="clear.emit()">Limpiar filtros</button>
+  }
+
+  <button type="button" class="btn-main apply" (click)="close.emit()">Ver resultados</button>
+</aside>

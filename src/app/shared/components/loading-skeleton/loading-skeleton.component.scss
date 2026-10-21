@@ -1,0 +1,48 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-auto-rows: 176px;
+  gap: 16px;
+
+  &--detail {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 420px;
+  }
+}
+
+.skel {
+  grid-row: span 2;
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--sand-3);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 55%) 50%, transparent 70%);
+    animation: shim 1.2s linear infinite;
+    transform: translateX(-100%);
+  }
+}
+
+.skbar {
+  position: absolute;
+  left: 16px;
+  height: 10px;
+  border-radius: 6px;
+  background: #e0dbd2;
+}
+
+@keyframes shim {
+  to {
+    transform: translateX(100%);
+  }
+}

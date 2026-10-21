@@ -1,0 +1,55 @@
+<footer class="foot">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="brand">
+        <span class="brand__logo">{{ brand.logoPrimary }}<span>{{ brand.logoSecondary }}</span></span>
+        <p class="brand__tagline serif">{{ brand.tagline }}</p>
+        <div class="social">
+          <a [href]="brand.social.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <app-icon name="instagram" />
+          </a>
+          <a [href]="brand.social.tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <app-icon name="tiktok" />
+          </a>
+          <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <app-icon name="whatsapp" />
+          </a>
+        </div>
+      </div>
+
+      <nav class="col" aria-label="Tienda">
+        <span class="flabel">Tienda</span>
+        @for (link of shopLinks; track link.label) {
+          <a [routerLink]="link.path" [fragment]="link.fragment">{{ link.label }}</a>
+        }
+      </nav>
+
+      <nav class="col" aria-label="Ayuda">
+        <span class="flabel">Ayuda</span>
+        @for (link of helpLinks; track link.label) {
+          <a [routerLink]="link.path" [fragment]="link.fragment">{{ link.label }}</a>
+        }
+        <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Contacto</a>
+      </nav>
+
+      <div class="col">
+        <span class="flabel">Métodos de pago</span>
+        <ul class="pays" role="list">
+          @for (method of payments; track method) {
+            <li>{{ method }}</li>
+          }
+        </ul>
+        <p class="pays__note">Se coordinan por WhatsApp al confirmar tu pedido.</p>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p>
+        <app-icon class="legal__icon" name="shield" [size]="16" />
+        Aviso de autenticidad: todas las fragancias se fraccionan desde frascos originales. {{ brand.name }} no
+        está afiliada a las marcas mencionadas.
+      </p>
+      <span>© {{ year }} {{ brand.name }} · {{ brand.country }}</span>
+    </div>
+  </div>
+</footer>
