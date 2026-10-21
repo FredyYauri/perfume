@@ -16,7 +16,11 @@ npm run build        # build de producción en dist/perfume/browser
 npm test             # pruebas unitarias (Vitest)
 ```
 
-Para publicar, sube el contenido de `dist/perfume/browser` a cualquier hosting estático (Netlify, Vercel, Firebase Hosting, Cloudflare Pages…). Configura la reescritura de rutas a `index.html` para que funcionen enlaces como `/perfume/dior-sauvage-edp`.
+### Publicar en Vercel
+
+El repo ya trae `vercel.json` (build, carpeta de salida y reescritura de rutas a `index.html`). En [vercel.com/new](https://vercel.com/new) importa el repositorio de GitHub y pulsa **Deploy**; no hace falta cambiar ninguna opción. Cada push a `main` publica una nueva versión y cada PR genera una vista previa.
+
+Para otro hosting estático, sube `dist/perfume/browser` y redirige las rutas desconocidas a `index.html` para que funcionen enlaces como `/perfume/dior-sauvage-edp`.
 
 > El `.gitignore` actual ignora `package-lock.json`. Se recomienda versionarlo para que todos instalen exactamente las mismas versiones.
 
@@ -24,7 +28,7 @@ Para publicar, sube el contenido de `dist/perfume/browser` a cualquier hosting e
 
 | Qué | Dónde |
 | --- | --- |
-| Número de WhatsApp | `src/app/core/config/whatsapp.config.ts` (formato internacional sin `+`, p. ej. `51987654321`) |
+| Número de WhatsApp | `src/app/core/config/whatsapp.config.ts` (formato internacional sin `+`, hoy `51937564407`) |
 | Perfumes, precios y stock | `src/assets/data/perfumes.json` |
 | Colecciones | `src/assets/data/categories.json` |
 | Perfiles olfativos | `src/assets/data/olfactory-profiles.json` |
